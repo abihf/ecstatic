@@ -1,0 +1,80 @@
+schema {
+  query: Query
+  # mutation: Mutation
+}
+
+type Query {
+  viewer: Viewer
+}
+
+type Viewer {
+  # return current user
+  me: User!
+
+  # return services that belong to the viewer/user
+  # services: [Service]!
+}
+
+interface Subject {
+  id: ID!
+  # permissions: [Permission]
+}
+
+interface Object {
+  id: ID!
+  # permissions: [Permission]
+}
+
+type User implements Subject {
+  id: ID!
+  user_id: String!
+  full_name: String!
+  linked_accounts: [LinkedAccount!]!
+  # teams: [Team]
+}
+
+type Bot implements Subject {
+  id: ID!
+  name: String!
+  description: String!
+  tokens: [BotToken]
+}
+
+type BotToken {
+  token: String!
+  active: Boolean!
+}
+
+type LinkedAccount {
+  # user: User!
+  provider: String!
+  subject: String!
+}
+
+type Team implements Subject {
+  id: ID!
+  name: String!
+  users: [User]!
+}
+
+type Permission {
+  subject: Subject!
+  object: Object!
+}
+
+type Service implements Object {
+  id: ID!
+  name: String!
+  cluster: String!
+  repo: String!
+  current_version: String!
+  # config: ServiceConfig
+}
+
+# type ServiceConfig {
+
+# }
+
+# type Mutation {
+
+# }

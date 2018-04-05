@@ -1,0 +1,5 @@
+{
+  "devDependencies": {
+    "tslint-language-service": "^0.9.8"
+  }
+}

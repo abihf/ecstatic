@@ -1,0 +1,14 @@
+{
+   schema: {
+     files: "schema/schema.gql"
+   },
+   query: {
+     files: [
+       {
+         match: 'ui/src/**/*.tsx',
+         parser: ['EmbeddedQueryParser', { startTag: 'gql`', endTag: '`' }],
+         isRelay: true,
+       }
+     ],
+   },
+}
